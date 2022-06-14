@@ -4,7 +4,7 @@ import 'package:riverpod_future_provider_api/core/endpoint.dart';
 import 'package:riverpod_future_provider_api/features/user/data/datasource/datasource.dart';
 import 'package:riverpod_future_provider_api/features/user/data/model/user_model.dart';
 
-class UserRemoteDatasourceImplDio implements UserRemoteDatasource {
+class UserRemoteDatasourceImplHttp implements UserRemoteDatasource {
   @override
   Future<List<UserModel>> requestUsers() async {
     Response response = await get(Uri.parse(Endpoint.endpointRegres));

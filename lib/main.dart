@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:riverpod_future_provider_api/features/user/presentation/pages/homepage.dart';
+import 'package:riverpod_future_provider_api/features/profile/data/datasource/myuser_datasource_impl.dart';
+import 'package:riverpod_future_provider_api/features/user/data/datasource/dio_datasource.dart';
+
+final apiProvider = Provider<UserRemoteDatasourceImplDio>(
+    (ref) => UserRemoteDatasourceImplDio());
+final myOwnUserProvider =
+    Provider<MyUserRemoteDatasourceImpl>((ref) => MyUserRemoteDatasourceImpl());
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -22,6 +28,13 @@ class MyApp extends StatelessWidget {
                 bodyText1: TextStyle(color: Colors.black),
                 bodyText2: TextStyle(color: Colors.white)),
             cardColor: Colors.purple),
-        home: const HomePage());
+        home: Center(
+          child: Column(
+            children: [
+              ElevatedButton(onPressed: () {}, child: const Text('My profile')),
+              ElevatedButton(onPressed: () {}, child: const Text('My Friends'))
+            ],
+          ),
+        ));
   }
 }
