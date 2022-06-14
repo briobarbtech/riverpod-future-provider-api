@@ -7,7 +7,10 @@ class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text('${e.firstName} ${e.lastName}'),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+      ),
       body: Center(
         child: Column(
           children: [

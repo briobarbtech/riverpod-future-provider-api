@@ -1,40 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:riverpod_future_provider_api/features/user/presentation/pages/detail_page.dart';
 import 'package:riverpod_future_provider_api/features/user/presentation/riverpod/provider.dart';
+import 'package:riverpod_future_provider_api/features/user/presentation/widgets/cardinkwell.dart';
 
 class HomePage extends ConsumerWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _data = ref.watch(userDataProvider);
+    final data = ref.watch(userDataProvider);
     return Scaffold(
         appBar: AppBar(
           title: const Text('User Profile'),
+          backgroundColor: Theme.of(context).colorScheme.primary,
         ),
-        body: _data.when(
-          data: (_data) {
+        body: data.when(
+          data: (data) {
             return Column(
               children: [
-                ..._data.map((e) => ListView(shrinkWrap: true, children: [
-                      InkWell(
-                        onTap: () => Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => DetailPage(
-                              e: e,
-                            ),
-                          ),
-                        ),
-                        child: ListTile(
-                          title: Text(e.firstName),
-                          subtitle: Text(e.lastName),
-                          trailing: CircleAvatar(
-                            backgroundImage: NetworkImage(e.avatar),
-                          ),
-                        ),
-                      ),
-                    ])),
+                ...data.map((e) =>
+                    ListView(shrinkWrap: true, children: [CardInkwell(e: e)])),
               ],
             );
           },

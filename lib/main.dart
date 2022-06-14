@@ -15,8 +15,13 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+            colorScheme: ColorScheme.fromSwatch(
+                    brightness: Brightness.dark, primarySwatch: Colors.purple)
+                .copyWith(secondary: Colors.purpleAccent),
+            textTheme: const TextTheme(
+                bodyText1: TextStyle(color: Colors.black),
+                bodyText2: TextStyle(color: Colors.white)),
+            cardColor: Colors.purple),
         home: const HomePage());
   }
 }
