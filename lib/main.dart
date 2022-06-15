@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:riverpod_future_provider_api/features/user/data/datasource/dio_datasource.dart';
+import 'package:riverpod_future_provider_api/features/user/data/repository/user_repository_impl.dart';
 import 'package:riverpod_future_provider_api/features/user/presentation/pages/homepage.dart';
 
+final apiProvider = Provider((ref) =>
+    UserRepositoryImpl(UserRemoteDatasourceImplDio())
+        .remoteDatasource
+        .requestUsers());
 void main() {
   runApp(const ProviderScope(child: MyApp()));
 }
